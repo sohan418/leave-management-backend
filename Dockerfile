@@ -1,5 +1,5 @@
-# Use official Python image
-FROM python:3.10-slim
+# Use official Python image (3.9.13)
+FROM python:3.9.13-slim
 
 # Set working directory
 WORKDIR /app
@@ -19,5 +19,5 @@ COPY . .
 # Expose port
 EXPOSE 8000
 
-# Start FastAPI with Gunicorn (for production)
-CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "main:app", "--bind", "0.0.0.0:8000", "--workers", "4"]
+# Start FastAPI with Uvicorn
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
